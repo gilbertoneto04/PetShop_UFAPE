@@ -1,0 +1,37 @@
+[
+  {
+    "dataHora": "2025-04-10T08:30:00",
+    "veterinario": {
+      "nome": "Dr. Gilbetano",
+      "cpf": "888888888888",
+      "senha": "1234",
+      "cargo": "VETERINARIO"
+    },
+    "servico": {
+      "id": 1,
+      "descricao": "Consulta",
+      "preco": 200.0,
+      "tipo": "CONSULTA"
+    },
+    "consulta": {
+      "paciente": {
+        "nome": "Roberto",
+        "especie": "Cachorro",
+        "raca": "Caramelo",
+        "dono": {
+          "nome": "Luis",
+          "telefone": "81997785245",
+          "cpf": "44444444444",
+          "senha": "1234"
+        }
+      },
+      "veterinario": {
+        "nome": "Dr. Gilbetano",
+        "cpf": "888888888888",
+        "senha": "1234",
+        "cargo": "VETERINARIO"
+      },
+      "status": "AGENDADA"
+    }
+  }
+]
