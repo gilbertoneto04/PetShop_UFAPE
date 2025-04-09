@@ -6,6 +6,7 @@ import entidades.funcionarios.Veterinario;
 import entidades.petshop.Agendamento;
 import entidades.petshop.Loja;
 import entidades.petshop.Produto;
+import entidades.petshop.RelatorioVendas;
 import entidades.petshop.Servico;
 import util.InputHelper;
 
@@ -21,6 +22,7 @@ public class MenuVendedor {
             System.out.println("1. Menu da Loja");
             System.out.println("2. Menu de Agendamentos");
             System.out.println("3. Menu de Pacientes");
+            System.out.println("4. Ver relatório de vendas");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 
@@ -29,6 +31,7 @@ public class MenuVendedor {
                 case 1 -> menuLoja(sc);
                 case 2 -> menuAgendamentos(sc);
                 case 3 -> menuPacientes(sc);
+                case 4 -> RelatorioVendas.listarVendas();
                 case 0 -> System.out.println("Saindo do menu vendedor...");
                 default -> System.out.println("Opção inválida.");
             }

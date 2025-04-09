@@ -32,25 +32,28 @@ public class Loja {
         }
     }
 
-    public void venderProduto(String nomeProduto, int quantidadeVendida) {
-        Produto encontrado = produtos.stream()
-                .filter(p -> p.getNome().equalsIgnoreCase(nomeProduto))
-                .findFirst()
-                .orElse(null);
+    public void venderProduto(String nomeProduto, int quantidade) {
+        Produto produto = produtos.stream()
+            .filter(p -> p.getNome().equalsIgnoreCase(nomeProduto))
+            .findFirst()
+            .orElse(null);
     
-        if (encontrado != null) {
-            if (encontrado.getQuantidade() >= quantidadeVendida) {
-                encontrado.decrementarQuantidade(quantidadeVendida);
+        if (produto != null) {
+            if (produto.getQuantidade() >= quantidade) {
+                produto.setQuantidade(produto.getQuantidade() - quantidade);
                 salvarProdutos();
-                System.out.println("💸 Venda realizada: " + quantidadeVendida + " x " + encontrado.getNome());
+                System.out.println("💸 Venda realizada: " + quantidade + "x " + produto.getNome());
+    
+                // Registrar no relatório de vendas
+                Venda venda = new Venda(produto.getNome(), produto.getPreco(), quantidade);
+                RelatorioVendas.registrarVenda(venda);
             } else {
-                System.out.println("❌ Estoque insuficiente. Quantidade disponível: " + encontrado.getQuantidade());
+                System.out.println("❌ Estoque insuficiente.");
             }
         } else {
             System.out.println("❌ Produto não encontrado.");
         }
     }
-
     // === Persistência ===
 
     private List<Produto> carregarProdutos() {
