@@ -53,14 +53,18 @@ public class MenuVendedor {
                     String nome = sc.nextLine();
                     System.out.print("Preço do produto: ");
                     double preco = InputHelper.lerDouble(sc);
-                    Produto produto = new Produto(nome, preco);
+                    System.out.print("Quantidade em estoque: ");
+                    int quantidade = InputHelper.lerInteiro(sc);
+                    Produto produto = new Produto(nome, preco, quantidade);
                     loja.adicionarProduto(produto);
                 }
                 case 2 -> loja.listarProdutos();
                 case 3 -> {
                     System.out.print("Nome do produto a vender: ");
                     String nome = sc.nextLine();
-                    loja.venderProduto(nome);
+                    System.out.print("Quantidade a vender: ");
+                    int quantidade = InputHelper.lerInteiro(sc);
+                    loja.venderProduto(nome, quantidade);
                 }
                 case 0 -> System.out.println("Voltando ao menu anterior...");
                 default -> System.out.println("Opção inválida.");

@@ -32,16 +32,20 @@ public class Loja {
         }
     }
 
-    public void venderProduto(String nomeProduto) {
+    public void venderProduto(String nomeProduto, int quantidadeVendida) {
         Produto encontrado = produtos.stream()
                 .filter(p -> p.getNome().equalsIgnoreCase(nomeProduto))
                 .findFirst()
                 .orElse(null);
-
+    
         if (encontrado != null) {
-            produtos.remove(encontrado);
-            salvarProdutos();
-            System.out.println("💸 Venda realizada: " + encontrado);
+            if (encontrado.getQuantidade() >= quantidadeVendida) {
+                encontrado.decrementarQuantidade(quantidadeVendida);
+                salvarProdutos();
+                System.out.println("💸 Venda realizada: " + quantidadeVendida + " x " + encontrado.getNome());
+            } else {
+                System.out.println("❌ Estoque insuficiente. Quantidade disponível: " + encontrado.getQuantidade());
+            }
         } else {
             System.out.println("❌ Produto não encontrado.");
         }
